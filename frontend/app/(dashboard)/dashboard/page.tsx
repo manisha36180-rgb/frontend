@@ -146,20 +146,20 @@ export default function DashboardPage() {
     <div className="space-y-8 pb-12 print:p-0 print:m-0">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 print:hidden">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Vessel Inspection System</h1>
-          <p className="text-slate-500 mt-1">Welcome back, {user?.name} ({user?.role})</p>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">Vessel Inspection System</h1>
+          <p className="text-slate-600 dark:text-white/80 mt-1 font-medium">Welcome back, {user?.name} ({user?.role})</p>
         </div>
         <div className="flex gap-2">
           <button 
             onClick={exportToExcel}
-            className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-white/5 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-xl text-xs font-bold hover:bg-emerald-500 hover:text-white transition-all shadow-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#111827] border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-xl text-xs font-bold hover:bg-emerald-500 hover:text-white transition-all shadow-sm"
           >
             <Download className="w-3.5 h-3.5" />
             Excel Export
           </button>
           <button 
             onClick={exportToPDF}
-            className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-white/5 border border-blue-500/20 text-blue-600 dark:text-blue-400 rounded-xl text-xs font-bold hover:bg-blue-500 hover:text-white transition-all shadow-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-[#111827] border border-blue-500/20 text-blue-600 dark:text-blue-400 rounded-xl text-xs font-bold hover:bg-blue-500 hover:text-white transition-all shadow-sm"
           >
             <FileText className="w-3.5 h-3.5" />
             PDF Export
@@ -167,39 +167,18 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 print:grid-cols-4">
-        {stats.map((stat, i) => (
-          <motion.div
-            key={stat.label}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.05 }}
-            className="p-5 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl shadow-sm hover:border-slate-300 dark:hover:border-white/20 transition-all"
-          >
-            <div className="flex items-center gap-4">
-              <div className={cn("p-2.5 rounded-xl", stat.bg)}>
-                <stat.icon className={cn("w-5 h-5", stat.color)} />
-              </div>
-              <div>
-                <p className="text-slate-500 text-[10px] font-bold uppercase tracking-wider">{stat.label}</p>
-                <h3 className="text-xl font-bold mt-0.5">{stat.value}</h3>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+      {/* Stats Grid Removed */}
 
       {/* 51 Categories Grid Section on Dashboard */}
-      <div className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-3xl p-6 shadow-sm">
+      <div className="bg-card border border-border rounded-3xl p-6 shadow-sm">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-sm font-bold flex items-center gap-2 text-slate-800 dark:text-white uppercase tracking-wider">
+          <h2 className="text-sm font-bold flex items-center gap-2 text-foreground uppercase tracking-wider">
             <div className="p-1.5 bg-accent/10 rounded-lg text-accent">
               <CheckCircle2 className="w-4 h-4" />
             </div>
             Inspection Modules
           </h2>
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{INSPECTION_TABLES.length} Categories</span>
+          <span className="text-[10px] font-bold text-muted-foreground dark:text-white/60 uppercase tracking-widest">{INSPECTION_TABLES.length} Categories</span>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2">
@@ -211,7 +190,7 @@ export default function DashboardPage() {
                 "px-3 py-1.5 rounded-lg border text-left transition-all text-[11px] font-semibold truncate",
                 selectedTable === table 
                   ? "bg-accent text-white border-accent shadow-md shadow-accent/20" 
-                  : "bg-slate-50 dark:bg-white/5 border-transparent text-slate-600 dark:text-slate-400 hover:border-slate-200 dark:hover:border-white/10"
+                  : "bg-secondary border-transparent text-slate-600 dark:text-white/70 hover:border-border hover:bg-slate-100 dark:hover:bg-white/10"
               )}
             >
               {table.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
@@ -221,31 +200,16 @@ export default function DashboardPage() {
       </div>
 
       {/* Active Data Table */}
-      <div className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-[32px] overflow-hidden p-8 shadow-sm">
+      <div className="bg-card border border-border rounded-[32px] overflow-hidden p-8 shadow-sm">
         <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white">
+            <h2 className="text-xl font-bold text-foreground">
               Inspection Data: <span className="text-accent">{selectedTable.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}</span>
             </h2>
-            <p className="text-sm text-slate-500 mt-1">Reviewing requirements and responses for {currentVessel?.vessel_name || currentVessel?.vesselName || 'Loading...'}</p>
           </div>
 
-          
-          <div className="flex items-center gap-3 bg-slate-100 dark:bg-white/5 p-1.5 rounded-2xl border border-slate-200 dark:border-white/10">
-            <div className="flex items-center gap-2 px-3">
-              <Ship className="w-4 h-4 text-accent" />
-              <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">Vessel</span>
-            </div>
-            <select 
-              value={selectedVessel || ''}
-              onChange={(e) => setSelectedVessel(e.target.value)}
-              className="bg-white dark:bg-slate-800 border-none rounded-xl px-4 py-2 text-xs font-bold outline-none ring-1 ring-slate-200 dark:ring-white/10 focus:ring-2 ring-accent transition-all min-w-[180px] cursor-pointer"
-            >
-              {vessels.map(v => (
-                <option key={v.id} value={v.id}>{v.vessel_name || v.vesselName || v.name}</option>
-              ))}
-            </select>
-
+          <div className="hidden md:block">
+            {/* Vessel selector removed per request */}
           </div>
         </div>
         
@@ -259,55 +223,7 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Admin Review Section */}
-      {user?.role === 'ADMIN' && reports.some(r => r.status === 'PENDING') && (
-        <div className="bg-amber-500/5 border border-amber-500/10 p-6 rounded-3xl space-y-4 print:hidden">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-amber-600 flex items-center gap-2">
-              <Clock className="w-6 h-6" />
-              Pending Review
-            </h2>
-            <span className="text-sm font-medium text-amber-600 bg-amber-500/10 px-3 py-1 rounded-full">
-              {reports.filter(r => r.status === 'PENDING').length} Reports Need Approval
-            </span>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="border-b border-amber-500/10">
-                  <th className="pb-4 text-xs font-bold uppercase tracking-wider text-amber-700/50">Report</th>
-                  <th className="pb-4 text-xs font-bold uppercase tracking-wider text-amber-700/50">Category</th>
-                  <th className="pb-4 text-xs font-bold uppercase tracking-wider text-amber-700/50 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-amber-500/10">
-                {reports.filter(r => r.status === 'PENDING').map(report => (
-                  <tr key={report.id} className="group">
-                    <td className="py-4 font-medium">{report.title}</td>
-                    <td className="py-4 text-sm text-slate-500 uppercase tracking-tighter">{report.category}</td>
-                    <td className="py-4 text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <button 
-                          onClick={() => approveReport(report.id)}
-                          className="px-3 py-1.5 bg-emerald-500 text-white rounded-lg text-xs font-bold hover:bg-emerald-600 transition-all"
-                        >
-                          Approve
-                        </button>
-                        <button 
-                          onClick={() => deleteReport(report.id)}
-                          className="px-3 py-1.5 bg-red-500 text-white rounded-lg text-xs font-bold hover:bg-red-600 transition-all"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
+      {/* Admin Review Section Removed */}
 
     </div>
   );

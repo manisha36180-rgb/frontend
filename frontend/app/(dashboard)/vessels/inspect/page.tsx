@@ -29,11 +29,12 @@ export default function InspectPage() {
   };
 
 
-  if (!vesselId || !category) {
+  if (!category) {
     return (
       <div className="p-12 text-center">
         <h1 className="text-2xl font-bold">Invalid Inspection Parameters</h1>
-        <button onClick={() => router.back()} className="mt-4 text-accent font-bold">Go Back</button>
+        <p className="text-slate-500 mt-2">No category specified.</p>
+        <button onClick={() => router.back()} className="mt-4 text-accent font-bold underline">Go Back</button>
       </div>
     );
   }
@@ -49,13 +50,15 @@ export default function InspectPage() {
             <ArrowLeft className="w-6 h-6" />
           </button>
           <div>
-            <h1 className="text-3xl font-bold tracking-tight flex items-center gap-3">
+            <h1 className="text-3xl font-bold tracking-tight flex items-center gap-3 text-foreground">
               <div className="p-2 bg-accent/10 rounded-xl">
                 <CheckCircle2 className="w-6 h-6 text-accent" />
               </div>
               {category.split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
             </h1>
-            <p className="text-slate-500 mt-1">Detailed report for vessel: {vessel?.vessel_name || vessel?.vesselName || vessel?.name || 'Loading...'}</p>
+            <p className="text-muted-foreground mt-1">
+              {vesselId ? `Detailed report for vessel: ${vessel?.vessel_name || vessel?.vesselName || 'Loading...'}` : 'Global Technical Registry (All Vessels)'}
+            </p>
           </div>
         </div>
 
@@ -67,7 +70,7 @@ export default function InspectPage() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-3xl overflow-hidden p-6 shadow-sm">
+      <div className="bg-card border border-border rounded-3xl overflow-hidden p-6 shadow-sm">
         <InspectionTable 
           tableName={category} 
           vesselId={vesselId}

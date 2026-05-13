@@ -21,6 +21,7 @@ import { motion } from 'framer-motion';
 const menuItems = [
   { icon: LayoutDashboard, label: 'Dashboard', href: '/dashboard', roles: ['ADMIN', 'USER', 'SUPERINTENDENT'] },
   { icon: Ship, label: 'Vessels', href: '/vessels', roles: ['ADMIN', 'USER', 'SUPERINTENDENT'] },
+  { icon: Settings, label: 'Vessel Management', href: '/vessels/categories', roles: ['ADMIN', 'SUPERINTENDENT'] },
   { icon: ClipboardList, label: 'Reports', href: '/reports', roles: ['ADMIN', 'USER', 'SUPERINTENDENT'] },
   { icon: ShieldCheck, label: 'Admin Panel', href: '/admin', roles: ['ADMIN'] },
   { icon: Users, label: 'User Management', href: '/admin/users', roles: ['ADMIN'] },
@@ -62,9 +63,9 @@ export function Sidebar({ isOpen, toggle }: { isOpen: boolean, toggle: () => voi
                 href={item.href}
                 className={cn(
                   "flex items-center gap-3 px-4 py-3 rounded-xl transition-all group",
-                  isActive 
-                    ? "bg-accent text-white shadow-lg shadow-accent/20" 
-                    : "text-slate-400 hover:bg-white/5 hover:text-white"
+                    isActive 
+                      ? "bg-accent text-white shadow-lg shadow-accent/20" 
+                      : "text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 hover:text-foreground"
                 )}
               >
                 <item.icon className={cn("w-5 h-5", isActive ? "text-white" : "group-hover:text-accent")} />
@@ -80,14 +81,14 @@ export function Sidebar({ isOpen, toggle }: { isOpen: boolean, toggle: () => voi
         </nav>
 
         {/* Footer */}
-        <div className="p-4 border-t border-white/5">
+        <div className="p-4 border-t border-[#334155]">
           <button 
             onClick={() => {
               console.log('Sidebar Logout Clicked');
               logout();
             }}
             className={cn(
-              "flex items-center gap-3 w-full px-4 py-3 rounded-xl text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-all group"
+              "flex items-center gap-3 w-full px-4 py-3 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-all group"
             )}
           >
             <LogOut className="w-5 h-5" />

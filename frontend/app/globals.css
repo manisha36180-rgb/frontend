@@ -56,24 +56,24 @@
 
 .dark {
   --background: #020617;
-  --foreground: #f8fafc;
-  --card: #0f172a;
-  --card-foreground: #f8fafc;
-  --popover: #0f172a;
-  --popover-foreground: #f8fafc;
-  --primary: #f8fafc;
-  --primary-foreground: #0f172a;
-  --secondary: #1e293b;
-  --secondary-foreground: #f8fafc;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
+  --foreground: #F8FAFC;
+  --card: #0F172A;
+  --card-foreground: #F8FAFC;
+  --popover: #0F172A;
+  --popover-foreground: #F8FAFC;
+  --primary: #F8FAFC;
+  --primary-foreground: #020617;
+  --secondary: #1E293B;
+  --secondary-foreground: #F8FAFC;
+  --muted: #1E293B;
+  --muted-foreground: #94A3B8;
   --accent: #3b82f6;
   --accent-foreground: #ffffff;
   --destructive: #7f1d1d;
-  --destructive-foreground: #f8fafc;
-  --border: #1e293b;
-  --input: #1e293b;
-  --ring: #cbd5e1;
+  --destructive-foreground: #F8FAFC;
+  --border: #1E293B;
+  --input: #1E293B;
+  --ring: #334155;
 }
 
 @layer base {
@@ -88,13 +88,13 @@
 }
 
 .glass {
-  @apply bg-white/70 dark:bg-maritime-dark/70 backdrop-blur-md border border-white/20 dark:border-white/10;
+  @apply bg-white/70 dark:bg-card/70 backdrop-blur-md border border-white/20 dark:border-border;
 }
 
 .sidebar-glass {
-  @apply bg-maritime-dark/95 dark:bg-black/95 backdrop-blur-lg border-r border-white/5;
+  @apply bg-card dark:bg-card backdrop-blur-lg border-r border-border;
 }
 
 .nav-glass {
-  @apply bg-white/80 dark:bg-maritime-dark/80 backdrop-blur-lg border-b border-white/10 sticky top-0 z-50;
+  @apply bg-background/80 dark:bg-card/90 backdrop-blur-lg border-b border-border sticky top-0 z-50;
 }

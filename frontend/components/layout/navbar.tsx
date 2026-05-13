@@ -31,42 +31,35 @@ export function Navbar({ toggleSidebar }: { toggleSidebar: () => void }) {
       <div className="flex items-center gap-4">
         <button 
           onClick={toggleSidebar}
-          className="p-2 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-colors"
+          className="p-2 hover:bg-accent/10 rounded-lg transition-colors text-foreground"
         >
           <Menu className="w-5 h-5" />
         </button>
-        <div className="relative hidden md:block w-64">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-          <input 
-            type="text" 
-            placeholder="Search everything..." 
-            className="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-white/5 border-none rounded-lg text-sm focus:ring-2 focus:ring-accent outline-none"
-          />
-        </div>
+        {/* Global Search Removed */}
       </div>
 
       <div className="flex items-center gap-3">
         <button 
           onClick={toggleTheme}
-          className="p-2 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-colors"
+          className="p-2 hover:bg-accent/10 rounded-lg transition-colors text-foreground"
         >
           {isDarkMode ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-slate-600" />}
         </button>
         
-        <button className="p-2 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-colors relative">
+        <button className="p-2 hover:bg-accent/10 rounded-lg transition-colors relative text-foreground">
           <Bell className="w-5 h-5" />
-          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-maritime-dark" />
+          <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-background" />
         </button>
 
-        <div className="h-8 w-[1px] bg-slate-200 dark:bg-white/10 mx-2" />
+        <div className="h-8 w-[1px] bg-slate-200 dark:bg-[#334155] mx-2" />
 
         <div className="flex items-center gap-3 pl-2">
           <div className="text-right hidden lg:block">
-            <p className="text-sm font-bold leading-none text-slate-900 dark:text-white">{user?.name || 'User'}</p>
-            <p className="text-[10px] text-slate-500 mt-1 font-bold uppercase tracking-wider">{user?.role || 'User'}</p>
+            <p className="text-sm font-bold leading-none text-foreground">{user?.name || 'User'}</p>
+            <p className="text-[10px] text-muted-foreground mt-1 font-bold uppercase tracking-wider">{user?.role || 'User'}</p>
           </div>
           
-          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-accent to-blue-400 flex items-center justify-center text-white font-bold border-2 border-white dark:border-maritime-dark shadow-sm">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-accent to-blue-400 flex items-center justify-center text-white font-bold border-2 border-background shadow-sm">
             {user?.name?.charAt(0) || <UserIcon className="w-5 h-5" />}
           </div>
 

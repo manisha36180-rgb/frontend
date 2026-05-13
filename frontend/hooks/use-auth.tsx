@@ -16,6 +16,10 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+  console.log('AuthProvider initializing...');
+  console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+  console.log('Supabase Key exists:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+  
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
@@ -80,6 +84,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const login = async (email: string, password?: string) => {
+    console.log('Attempting login for:', email);
     setIsLoading(true);
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
@@ -87,11 +92,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         password: password || '',
       });
       
-      if (error) throw error;
+      console.log('Login result data:', data);
+      if (error) {
+        console.error('Login error details:', error);
+        throw error;
+      }
       
+      console.log('Login successful, redirecting to /dashboard');
       router.push('/dashboard');
     } catch (error: any) {
-      console.error('Login failed:', error);
+      console.error('Login failed catch block:', error);
       alert(error.message || 'Login failed. Please check your credentials.');
       throw error;
     } finally {

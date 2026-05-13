@@ -91,8 +91,8 @@ export default function AdminPage() {
     <div className="space-y-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
-          <h1 className="text-4xl font-black tracking-tight text-slate-900 dark:text-white uppercase">Admin Control Panel</h1>
-          <p className="text-slate-500 mt-2 font-medium">Manage global system access, permissions, and security protocols.</p>
+          <h1 className="text-4xl font-black tracking-tight text-foreground uppercase">Admin Control Panel</h1>
+          <p className="text-muted-foreground mt-2 font-medium">Manage global system access, permissions, and security protocols.</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="px-4 py-2 bg-emerald-500/10 text-emerald-600 rounded-2xl text-xs font-black flex items-center gap-2 border border-emerald-500/20">
@@ -105,15 +105,15 @@ export default function AdminPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* User Management Section */}
         <div className="lg:col-span-2 space-y-8">
-          <div className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-[32px] overflow-hidden shadow-xl shadow-slate-200/20 dark:shadow-none">
-            <div className="p-8 border-b border-slate-100 dark:border-white/5 flex items-center justify-between bg-slate-50/50 dark:bg-white/5">
+          <div className="bg-card border border-border rounded-[32px] overflow-hidden shadow-xl">
+            <div className="p-8 border-b border-border flex items-center justify-between bg-secondary/30">
               <div className="flex items-center gap-4">
                 <div className="p-3 bg-accent rounded-2xl text-white shadow-lg shadow-accent/20">
                   <Users className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-black text-lg uppercase tracking-tight text-slate-900 dark:text-white">System Users</h3>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{systemUsers.length} TOTAL ACCOUNTS</p>
+                  <h3 className="font-black text-lg uppercase tracking-tight text-foreground">System Users</h3>
+                  <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{systemUsers.length} TOTAL ACCOUNTS</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -137,11 +137,11 @@ export default function AdminPage() {
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
-                  <tr className="bg-white dark:bg-transparent">
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Full Identity</th>
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Privilege Level</th>
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Operational Status</th>
-                    <th className="px-8 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-right">Actions</th>
+                  <tr className="bg-secondary/10">
+                    <th className="px-8 py-5 text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">Full Identity</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">Privilege Level</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em]">Operational Status</th>
+                    <th className="px-8 py-5 text-[10px] font-black text-muted-foreground uppercase tracking-[0.2em] text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-white/5">
@@ -154,17 +154,17 @@ export default function AdminPage() {
                     </tr>
                   ) : (
                     systemUsers.map((u) => (
-                      <tr key={u.id} className="hover:bg-slate-50 dark:hover:bg-white/5 transition-all group">
+                      <tr key={u.id} className="group hover:bg-secondary/30 transition-colors border-b border-border last:border-0">
                         <td className="px-8 py-6">
                           <div className="flex items-center gap-4">
                             <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-white/10 flex items-center justify-center text-xs font-black text-slate-500 uppercase">
                               {u.name?.charAt(0)}
                             </div>
                             <div>
-                              <p className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">{u.name}</p>
-                              <div className="flex items-center gap-1.5 text-slate-400">
+                              <p className="text-sm font-bold text-foreground">{u.name}</p>
+                              <div className="flex items-center gap-1.5 text-muted-foreground/80">
                                 <Mail className="w-3 h-3" />
-                                <span className="text-[11px] font-bold">{u.email}</span>
+                                <span className="text-[11px] font-bold text-foreground/70">{u.email}</span>
                               </div>
                             </div>
                           </div>
@@ -186,16 +186,16 @@ export default function AdminPage() {
                           </div>
                         </td>
                         <td className="px-8 py-6 text-right">
-                          <div className="flex items-center justify-end gap-3 opacity-0 group-hover:opacity-100 transition-all">
+                          <div className="flex items-center justify-end gap-3 transition-all">
                             <button 
                               onClick={() => openSettings(u)}
-                              className="p-2.5 hover:bg-white dark:hover:bg-white/10 rounded-xl border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-all text-slate-400 hover:text-accent shadow-sm"
+                              className="p-3 bg-slate-50 dark:bg-white/5 hover:bg-accent/10 rounded-xl border border-slate-200 dark:border-white/10 transition-all text-slate-600 dark:text-slate-400 hover:text-accent shadow-sm"
                             >
                               <Settings className="w-4 h-4" />
                             </button>
                             <button 
                               onClick={() => deleteUser(u.id)}
-                              className="p-2.5 hover:bg-white dark:hover:bg-white/10 rounded-xl border border-transparent hover:border-slate-200 dark:hover:border-white/10 transition-all text-slate-400 hover:text-rose-500 shadow-sm"
+                              className="p-3 bg-slate-50 dark:bg-white/5 hover:bg-rose-500/10 rounded-xl border border-slate-200 dark:border-white/10 transition-all text-slate-600 dark:text-slate-400 hover:text-rose-500 shadow-sm"
                             >
                               <Trash2 className="w-4 h-4" />
                             </button>
@@ -212,8 +212,8 @@ export default function AdminPage() {
 
         {/* Sidebar Settings Section */}
         <div className="space-y-8">
-          <div className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-[32px] p-8 shadow-xl shadow-slate-200/10 dark:shadow-none">
-            <h3 className="font-black text-sm uppercase tracking-[0.2em] text-slate-400 mb-8">Security Policies</h3>
+          <div className="bg-card border border-border rounded-[32px] p-8 shadow-xl">
+            <h3 className="font-black text-sm uppercase tracking-[0.2em] text-muted-foreground mb-8">Security Policies</h3>
             <div className="space-y-6">
               {policies.map((policy) => (
                 <div key={policy.id} className="flex items-center justify-between">

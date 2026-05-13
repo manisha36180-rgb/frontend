@@ -62,8 +62,8 @@ export default function UserManagementPage() {
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">User Management</h1>
-          <p className="text-slate-500 mt-1">Manage system access and roles.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground">User Management</h1>
+          <p className="text-muted-foreground mt-1">Manage system access and roles.</p>
         </div>
         <button 
           onClick={() => setIsModalOpen(true)}
@@ -142,39 +142,39 @@ export default function UserManagementPage() {
       )}
 
 
-      <div className="bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl overflow-hidden shadow-sm">
-        <div className="p-4 border-b border-slate-100 dark:border-white/5 flex flex-col sm:flex-row gap-4">
+      <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-sm">
+        <div className="p-4 border-b border-border flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 dark:text-slate-400" />
             <input 
               type="text" 
               placeholder="Search users..." 
-              className="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm outline-none focus:ring-2 focus:ring-accent"
+              className="w-full pl-10 pr-4 py-2 bg-secondary border border-border rounded-xl text-sm outline-none focus:ring-2 focus:ring-accent text-foreground"
             />
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm font-medium">
-            <Filter className="w-4 h-4 text-slate-400" />
+          <button className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-xl text-sm font-medium hover:bg-slate-50 dark:hover:bg-white/10 transition-colors">
+            <Filter className="w-4 h-4 text-slate-500 dark:text-slate-400" />
             Filter
           </button>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left">
-            <thead className="bg-slate-50 dark:bg-white/5">
+            <thead className="bg-secondary/50">
               <tr>
-                <th className="px-6 py-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Name</th>
-                <th className="px-6 py-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Email</th>
-                <th className="px-6 py-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Role</th>
-                <th className="px-6 py-3 text-[10px] font-bold text-slate-500 uppercase tracking-widest text-right">Action</th>
+                <th className="px-6 py-3 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Name</th>
+                <th className="px-6 py-3 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Email</th>
+                <th className="px-6 py-3 text-[10px] font-bold text-muted-foreground uppercase tracking-widest">Role</th>
+                <th className="px-6 py-3 text-[10px] font-bold text-muted-foreground uppercase tracking-widest text-right">Action</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 dark:divide-white/5">
               {users.map((u) => (
-                <tr key={u.id} className="hover:bg-slate-50 dark:hover:bg-white/5 transition-colors">
+                <tr key={u.id} className="hover:bg-secondary/30 transition-colors border-b border-border last:border-0">
                   <td className="px-6 py-4">
-                    <p className="text-sm font-bold">{u.name}</p>
+                    <p className="text-sm font-bold text-foreground">{u.name}</p>
                   </td>
-                  <td className="px-6 py-4 text-sm font-medium text-slate-900 dark:text-slate-100">
+                  <td className="px-6 py-4 text-sm font-medium text-foreground">
                     {u.email}
                   </td>
                   <td className="px-6 py-4">
@@ -189,11 +189,11 @@ export default function UserManagementPage() {
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
-                      <button className="p-1.5 hover:bg-slate-100 dark:hover:bg-white/10 rounded-md text-slate-400 hover:text-accent">
-                        <Settings className="w-4 h-4" />
+                      <button className="p-2 hover:bg-slate-100 dark:hover:bg-white/10 rounded-lg text-slate-500 dark:text-slate-400 hover:text-accent transition-all">
+                        <Settings className="w-5 h-5" />
                       </button>
-                      <button className="p-1.5 hover:bg-slate-100 dark:hover:bg-white/10 rounded-md text-slate-400 hover:text-red-500">
-                        <Trash2 className="w-4 h-4" />
+                      <button className="p-2 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg text-slate-500 dark:text-slate-400 hover:text-red-500 transition-all">
+                        <Trash2 className="w-5 h-5" />
                       </button>
                     </div>
                   </td>
